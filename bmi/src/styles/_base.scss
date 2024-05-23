@@ -1,0 +1,67 @@
+@use 'variables' as v;
+
+:root {
+    --page-padding: 1.5rem;
+}
+
+body { 
+    font-size: 1rem;
+    font-family: v.$font;
+    font-weight: 400;
+    line-height: 1.5;
+    color: v.$clr-electric-blue;
+}
+
+.sr-only {
+    position: absolute ;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    top: auto;
+    overflow: hidden;
+}
+
+// Grid layout 
+
+.grid {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+}
+
+@media (min-width: 48em) {
+    :root {
+        --page-padding: 0;
+        --grid-gap: .625rem;
+        --grid-padding: calc(2.5rem - var(--grid-gap));
+    }
+
+    .grid {
+        grid-template-columns: var(--grid-padding) repeat(12, 1fr) var(--grid-padding);
+        column-gap: var(--grid-gap);
+    }
+
+    .grid-item {
+        display: grid;
+        grid-template-columns: subgrid;
+    }
+
+    .grid-item {
+        grid-column: 1 / -1;
+    }
+}
+
+
+@media (min-width: 75em) {
+    :root {
+        --page-padding: 1.5rem;
+        --grid-gap: 2rem;
+        --grid-padding: calc((8.75rem - var(--grid-gap)) - var(--page-padding));
+    }
+
+    main {
+        max-width: 100rem;
+        margin: 0 auto;
+        padding: 0 var(--page-padding);
+    }
+}
